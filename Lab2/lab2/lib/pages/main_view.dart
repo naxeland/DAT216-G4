@@ -8,6 +8,8 @@ import 'package:lab2/widgets/recipe_area.dart';
 import 'package:lab2/widgets/recipe_detail.dart';
 import 'package:lab2/widgets/recipe_list.dart';
 import 'package:lab2/widgets/time_control.dart';
+import 'package:lab2/app_theme.dart';
+
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -15,44 +17,42 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
+    body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        
         children: [
-          _controlPanel(context),
-          const Expanded(
-            child: RecipeArea(),
-          ),
-        ],
-      ),
+        _controlPanel(context),
+        SizedBox(width: AppTheme.paddingSmall), 
+        const Expanded(child: RecipeArea()),
+      ],
+    ),
     );
   }
 
 Widget _controlPanel(context, {double width = 320}) {
    return Container(
+      padding:  EdgeInsets.only(right: AppTheme.paddingSmall, left: AppTheme.paddingMedium),
       width: width,
       color: const Color.fromARGB(255, 193, 210, 218),
       child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: const [
         Center(
           child: Logo(),
         ),
+        SizedBox(height: 8),
         Text('Hitta ett recept som passar genom att ändra inställningarna nedanför'),
         SizedBox(height: 8),
         IngredientControl(),
+        SizedBox(height: 8),
         KitchenControl(),
-            Center(
-          child: Text('Svårighetsgrad'),
-        ),
+        Text('Svårighetsgrad'),
         DifficulyControl(),
-        Center(
-          child: Text('Maxpris'),
-        ),
+        Text('Maxpris'),
         PriceControl(),
         SizedBox(height: 30),
-        Center(
-          child: Text('Maxtid'),
-        ),
+        Text('Maxtid'),
         TimeControl()
       ],
     ),

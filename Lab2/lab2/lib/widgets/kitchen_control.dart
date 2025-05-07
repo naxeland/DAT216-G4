@@ -27,11 +27,18 @@ return Row(
       initialSelection: labels[0],
       dropdownMenuEntries: [
         for (int i = 0; i < labels.length; i++)
-          DropdownMenuEntry(
-            value: labels[i],
-            label: labels[i],
-            leadingIcon: Cuisine.flag(labels[i]), // Use the icon from the Cuisine class
-          ),
+          if (i == 0)
+            DropdownMenuEntry(
+              value: labels[0],
+              label: labels[0],
+              leadingIcon: Cuisine.flags[0], // Use the icon from the Cuisine class
+            )
+          else
+            DropdownMenuEntry(
+              value: labels[i],
+              label: labels[i],
+              leadingIcon: Cuisine.flag(labels[i]), // Use the icon from the Cuisine class
+            ),
         ],
         onSelected: (value){
           recipeHandler.setCuisine(value);

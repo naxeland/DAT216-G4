@@ -5,6 +5,7 @@ import 'package:lab2/widgets/recipe_detail.dart';
 import 'package:lab2/widgets/recipe_list_item.dart';
 import 'package:provider/provider.dart';
 
+
 class RecipeList extends StatelessWidget {
   const RecipeList({super.key});
 
@@ -17,14 +18,12 @@ class RecipeList extends StatelessWidget {
       itemCount: recipes.length,
       itemBuilder: (context, index) {
         var recipe = recipes[index];
-        return ListTile(
-          leading: recipe.image,
-          title: Text(recipe.name),
-          onTap: () {
-            uiController.selectRecipe(recipe);
-          },
-
-        );
+        return RecipeListItem(
+      recipe,
+      onTap: () {
+      uiController.selectRecipe(recipe);
+     },
+);
       },
     );
   }
